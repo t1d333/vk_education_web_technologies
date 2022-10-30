@@ -48,4 +48,16 @@
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
 }
- 
+
+.post_avatar {
+    width: 90px;
+    height: 90px;
+}
+
+.card a {
+    text-decoration: none;
+}
+
+p > a {
+    color: inherit;
+}
