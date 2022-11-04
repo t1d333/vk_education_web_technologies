@@ -61,3 +61,18 @@
 p > a {
     color: inherit;
 }
+
+html, body {
+    height: 100%;
+}
+footer {
+    height: 80px;
+}
+.main {
+    height: calc(100% - 200px);
+}
+
+#logo {
+    height: 30px;
+    width: 50px;
+}
