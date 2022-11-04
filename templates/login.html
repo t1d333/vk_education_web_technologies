@@ -20,24 +20,6 @@
         <link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
         <meta name="theme-color" content="#712cf9">
         <script src="../static/js/bootstrap.bundle.js"></script>
-        <script>
-            (function() {
-                'use strict';
-                window.addEventListener('load', function() {
-                    var forms = document.getElementsByClassName('needs-validation');
-                    var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-                            form.classList.add('was-validated');
-                        }, false);
-                    });
-                }, false);
-            })();
-
-        </script>
     </head>
     <body>
 
@@ -81,7 +63,7 @@
                             <a href="./ask.html" class="btn btn-outline-primary mx-3">Ask</a>    
                         </div>
 
-                        <div class="dropdown text-end" >
+                        <div class="dropdown text-end" style="display:none;">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="../static/img/avatar.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
                             </a>
@@ -91,7 +73,7 @@
                                 <li><a class="dropdown-item" href="#">Log out</a></li>
                             </ul>
                         </div>
-                        <div style="display:none;">
+                        <div class="d-flex">
                             <a class="btn btn-outline-primary" href="./login.html">Log in</a>
                             <a class="btn btn-outline-primary mx-3" href="./signup.html">Register</a>
                         </div>
@@ -99,62 +81,48 @@
                 </div>
             </header>
         </main>
-        <div class="container-fluid p-5" style="font-size: 1.4rem;">
+        <div class="container-fluid p-5 main" style="font-size: 1.4rem;">
             <div class="row justify-content-around">
                 <div class="col-lg-9 d-flex flex-column">
                     <div class="row">
                         <div class="h1">
-                            New Question 
+                            Log in 
                         </div>
                     </div>
                     <div class="row mt-4">
-                        <form class="g-3 needs-validation" novalidate>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-2 py-0 col-form-label col-form-label-lg">
-                                    <span class="h2">
-                                        Title 
-                                    </span>
-                                </label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-lg" id="questionTitleInput" placeholder="enter a valid question title" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid question title
+                        <div class="col-lg-9">
+                            <form class="g-3 needs-validation" novalidate>
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 py-0 col-form-label col-form-label-lg">
+                                        <span class="h2">
+                                            Login
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control-lg is-invalid" id="questionTitleInput" placeholder="Enter your login" required>
+                                        <div class="invalid-feedback">
+                                            The login or password is incorrect.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group row mt-4">
+                                    <label for="colFormLabelLg" class="col-sm-2 py-0 col-form-label col-form-label-lg">
+                                        <span class="h2">
+                                            Password 
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control form-control-lg" id="colFormLabelLg" placeholder="Enter your password" required>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="form-group row mt-4">
-                                <label for="exampleFormControlTextarea1" class="col-sm-2 py-0 col-form-label col-form-label-lg">
-                                    <span class="h2">
-                                        Text 
-                                    </span>
-
-                                </label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control rounded-15" id="questionTextInput" rows="14" required></textarea>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid question text
-                                    </div>
+                                <div class="form-group d-flex justify-content-end">
+                                    <a class="btn btn-lg mt-4 mx-4 btn-outline-primary" href="./signup.html">Register</a>
+                                    <button class="btn btn-lg mt-4 btn-outline-primary" type="submit">Log in</button>
                                 </div>
-                            </div>
-                            <div class="form-group row mt-4">
-                                <label for="colFormLabelLg" class="col-sm-2 py-0 col-form-label col-form-label-lg">
-                                    <span class="h2">
-                                        Tags 
-                                    </span>
-                                </label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-lg" id="questionTagsInput" placeholder="Enter tags separated by commas"required>
-                                    <div class="invalid-feedback">
-                                        Failed to recognize tags 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group d-flex justify-content-end">
-                                <button class="btn btn-lg mt-4 btn-outline-primary" type="submit">Ask</button>
-                            </div>
-                        </form>
-
+                            </form>
+                        </div>
                     </div>
                 </div>       
                 <div class="col-lg-2">

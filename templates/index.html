@@ -50,31 +50,33 @@
         <main>
             <header class="p-3 mb-3 border-bottom">
                 <div class="container">
-                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between justify-content-lg-between">
                         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
                             <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
                         </a>
 
-                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <li><a href="./index.html" class="nav-link px-2 link-secondary">Главная</a></li>
-                        </ul>
+                        <div class="d-flex flex-row">
+                            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                            </form>
 
+                            <a href="./ask.html" class="btn btn-outline-primary mx-3">Ask</a>    
+                        </div>
 
-                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                        </form>
-
-                        <a href="./ask.html" class="btn btn-outline-dark mx-3">Ask</a>        
-
-                        <div class="dropdown text-end">
+                        <div class="dropdown text-end" style="display:none;">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                                <img src="../static/img/avatar.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="#">Настройки</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Выйти</a></li>
+                                <li><a class="dropdown-item" href="#">Log out</a></li>
                             </ul>
+                        </div>
+                        <div class="d-flex">
+                            <a class="btn btn-outline-primary" href="./login.html">Log in</a>
+                            <a class="btn btn-outline-primary mx-3" href="./signup.html">Register</a>
+
                         </div>
                     </div>
                 </div>
@@ -85,10 +87,10 @@
                 <div class="col-lg-9 d-flex flex-column justify-content-between">
                     <div class="d-flex flex-row justify-content-around">
                         <div class="h1">
-                            Новые вопросы
+                            <a href="#" class="active">New Questions</a>
                         </div>
                         <div class="h1">
-                            <a href="#">Популярные вопросы</a>
+                            <a href="#">Hot Questions</a>
                         </div>
                     </div>
                     <div class="countainer-fluid p-0 m-0 questions">
@@ -111,7 +113,7 @@
                                         <hr class="my-4">
                                         <div class="d-flex justify-content-start align-items-center">
                                             <p class="mb-0">
-                                            Рейтинг: 
+                                            Rating: 
                                             <span id="likes_counter">5</span>
                                             <span class="btn btn-outline-dark mx-2 like_btn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
@@ -132,7 +134,7 @@
                                                     <path fill-rule="evenodd" d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                                                     <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                                                 </svg>
-                                                Ответы
+                                                Answers 
                                                 <span id="answer_counter">(3)</span>
                                             </a>
                                             </p>
@@ -142,7 +144,7 @@
                                                 <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
                                                 <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
                                             </svg>
-                                            Теги: 
+                                            Tags: 
                                             <span class="tag_list">
                                                 <a href="#">
                                                     black-jack
@@ -177,7 +179,7 @@
                                         <hr class="my-4">
                                         <div class="d-flex justify-content-start align-items-center">
                                             <p class="mb-0">
-                                            Рейтинг: 
+                                            Rating: 
                                             <span id="likes_counter">5</span>
                                             <span class="btn btn-outline-dark mx-2 like_btn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
@@ -191,15 +193,13 @@
                                             </span>
                                             </p>
 
-
-     
                                             <p class="mx-4 mb-0">
                                             <a href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmark-check" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                                                     <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                                                 </svg>
-                                                Ответы
+                                                Answers 
                                                 <span id="answer_counter">(3)</span>
                                             </a>
                                             </p>
@@ -209,7 +209,7 @@
                                                 <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
                                                 <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
                                             </svg>
-                                            Теги: 
+                                            Tags: 
                                             <span class="tag_list">
                                                 <a href="#">
                                                     black-jack
@@ -244,7 +244,7 @@
                                         <hr class="my-4">
                                         <div class="d-flex justify-content-start align-items-center">
                                             <p class="mb-0">
-                                            Рейтинг: 
+                                            Rating: 
                                             <span id="likes_counter">5</span>
                                             <span class="btn btn-outline-dark mx-2 like_btn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
@@ -265,7 +265,7 @@
                                                     <path fill-rule="evenodd" d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                                                     <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                                                 </svg>
-                                                Ответы
+                                                Answers 
                                                 <span id="answer_counter">(3)</span>
                                             </a>
                                             </p>
@@ -275,7 +275,7 @@
                                                 <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
                                                 <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
                                             </svg>
-                                            Теги: 
+                                            Tags: 
                                             <span class="tag_list">
                                                 <a href="#">
                                                     black-jack
@@ -300,7 +300,7 @@
                                 </a>
                             </li>
                             <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
                             <li class="page-item"><a class="page-link" href="#">10</a></li>
                             <li class="page-item">
@@ -313,29 +313,60 @@
 
                 <div class="col-lg-2">
                     <div class="row px-3 popular_tags">
-                        <h1>Популярные теги</h1>
-                        <div class="list-group text-center" style="font-size:1.3rem">
-                            <a href="#" class="list-group-item list-group-item-action ">
-                                perl
-                            </a>
-
-                            <a href="#" class="list-group-item list-group-item-action text-center">
-                                python 
-                            </a>
-
-                            <a href="#" class="list-group-item list-group-item-action text-center">
-                                Technopark
-                            </a>
-
-                            <a href="#" class="list-group-item list-group-item-action text-center">
-                                MySQL 
-                            </a>
+                        <h2 class="text-center">Popular Tags</h2>
+                        <div class="container-fluid text-center" style="font-size:1.2rem">
+                            <div class="row mt-2 d-flex flex-row justify-content-center">
+                                <div class="col mt">
+                                    <a href="#">
+                                        perl
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#">
+                                        Techopark 
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#">
+                                        python 
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row mt-2 d-flex flex-row justify-content-between">
+                                <div class="col">
+                                    <a href="#">
+                                        django 
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#">
+                                        MySql 
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#">
+                                        Mail.ru 
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row mt-2 d-flex flex-row justify-content-between">
+                                <div class="col">
+                                    <a href="#">
+                                        Firefox
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="#">
+                                        Techopark 
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row px-3 mt-3 best_members">
-                        <h1>
-                            Лучшие участники
-                        </h1>
+                    <div class="row px-3 mt-5 best_members">
+                        <h2 class="text-center">
+                            Best Members 
+                        </h2>
                         <div class="list-group" style="font-size:1.3rem">
                             <a href="#" class="list-group-item list-group-item-action text-center">
                                 User1 
@@ -354,8 +385,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="container-fluid">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 px-5 my-4 border-top">
                 <div class="col-md-4 mx-4 d-flex align-items-center">
                     <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1"> <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg> </a> <span class="text-muted">&copy; 2022 Kirill Kiselev</span>
@@ -382,7 +411,6 @@
                     </li>
                 </ul>
             </footer>
-        </div> 
     </body>
 </html>
 
