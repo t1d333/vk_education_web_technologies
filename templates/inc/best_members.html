@@ -1,0 +1,13 @@
+<div class="row px-3 mt-5 best_members">
+    <h2 class="text-center">
+        Best Members 
+    </h2>
+    <div class="list-group" style="font-size:1.3rem">
+        {% for member in best_members%}
+            <a href="#" class="list-group-item list-group-item-action text-center">
+                {{member}} 
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
