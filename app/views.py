@@ -46,7 +46,7 @@ def paginate(objects_list, request, per_page=20):
         page_obj = paginator.get_page(1)
         page_number = 1
    return  {
-                "elided_page_range": paginator.get_elided_page_range(number=1, on_each_side=2, on_ends=1),
+                "elided_page_range": paginator.get_elided_page_range(number=page_number, on_each_side=2, on_ends=1),
                 "page_obj": page_obj,
                 "ELLIPSIS": paginator.ELLIPSIS,
             }
