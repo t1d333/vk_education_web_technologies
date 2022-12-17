@@ -76,3 +76,11 @@ header {
     width: 50px;
 }
 
+
+.form-control.is-valid:focus, .is-valid, .was-validated :valid.form-control {
+  border-color:inherit !important;
+  background-image: inherit !important;
+  box-shadow:inherit !important;
+}
+
+
