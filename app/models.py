@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
-    nickname = models.CharField(max_length=30)
+    username = models.CharField(max_length=30)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField()
     avatar = models.ImageField()
 
     def __str__(self):
-        return self.nickname
+        return self.username
 
 
 class Tag(models.Model):
