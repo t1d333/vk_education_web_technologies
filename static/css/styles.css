@@ -68,11 +68,16 @@ html, body {
 footer {
     height: 80px;
 }
-.main {
-    height: calc(100% - 200px);
+header {
+    height: 80px;
 }
-
 #logo {
     height: 30px;
     width: 50px;
+}
+
+.was-validated .form-control:valid, .form-control.is-valid { 
+  border: 1px solid #ced4da !important;
+  background-image: inherit !important;
+  box-shadow:inherit !important;
 }
