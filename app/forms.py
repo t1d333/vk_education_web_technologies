@@ -1,7 +1,9 @@
 from django import forms
 from app import models
 from django.contrib import auth
+from django.utils.translation import gettext_lazy as _
 from django.http import HttpRequest
+
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -17,6 +19,10 @@ class RegisterForm(forms.ModelForm):
     class Meta:
         model = models.Profile
         fields = ["username", "email", "password", "password_repeat", "avatar"]
+
+    labels = {
+        password_repeat: _('Repeat password')
+    }
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -68,12 +74,13 @@ class RegisterForm(forms.ModelForm):
         return self.cleaned_data
 
 
-class QuestionCreationForm(forms.ModelForm):
+class QuestionForm(forms.ModelForm):
     tags = forms.CharField()
 
     class Meta:
         model = models.Question
         fields = ['title', 'text', 'tags']
+
     tags.widget.attrs['placeholder'] = 'Enter no more than three tags separated by commas'
 
     def clean_tags(self):
@@ -81,20 +88,45 @@ class QuestionCreationForm(forms.ModelForm):
         tags_list = self.cleaned_data['tags'].split(', ')
         tags_set = set(tags_list)
         if len(tags_set) != len(tags_list):
-            raise forms.ValidationError(message="Tags must not be the same", code="invalid_tags")
+            raise forms.ValidationError(
+                message="Tags must not be the same",
+                code="invalid_tags")
 
         if (0 == len(tags_set)) or (len(tags_set) > 3):
-            raise forms.ValidationError(message="Tags count must be valid", code="invalid_tags")
+            raise forms.ValidationError(
+                message="Tags count must be valid",
+                code="invalid_tags")
         for tag in tags_list:
             if len(tag) > 15:
-                raise forms.ValidationError(message="Tag length must be less than 15")
+                raise forms.ValidationError(
+                    message="Tag length must be less than 15")
         return self.cleaned_data['tags']
 
     def save(self, username):
         author = models.Profile.objects.get(username=username)
-        tags = {models.Tag.objects.get_or_create(name=tag) for tag in set(self.cleaned_data.pop('tags').split(','))}
-        question = models.Question.objects.create(author=author, **self.cleaned_data)
+        tags = {
+            models.Tag.objects.get_or_create(
+                name=tag) for tag in set(
+                self.cleaned_data.pop('tags').split(','))}
+        question = models.Question.objects.create(
+            author=author, **self.cleaned_data)
         for tag in tags:
             question.tags.add(tag[0])
         return question
-# class AnswerCreationForm(forms.Form):
+
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = models.Answer
+        fields = ['text']
+        labels = {
+            'text': _(''),
+        }
+
+    def save(self, request: HttpRequest):
+        author = models.Profile.objects.get(username=request.user.username)
+        question = models.Question.objects.get(pk=request.path.split('/')[-1])
+        return models.Answer.objects.create(
+            author=author,
+            question=question,
+            **self.cleaned_data)

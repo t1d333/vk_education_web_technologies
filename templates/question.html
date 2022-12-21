@@ -1,5 +1,6 @@
 {% extends 'inc/base.html' %}
 {% load static %}
+{% load bootstrap5 %}
 {% block content %}
 <div class="container-fluid" id="question">
     <div class="row d-flex justify-content-center">
@@ -60,11 +61,12 @@
 <div class="row d-flex justify-content-center">
     <div class="col col-xl-10">
 
-        <form>
-            <div class="form-outline" >
-                <textarea class="form-control" id="answerForm" rows="4"></textarea>
-                <label class="form-label" for="annwerForm"></label>
-            </div>
+        <form novalidate method="post" >
+            <!-- <div class="form-outline" > -->
+            <!--     <textarea class="form-control" id="answerForm" rows="4"></textarea> -->
+            <!--     <label class="form-label" for="annwerForm"></label> -->
+            <!-- </div> -->
+            {% bootstrap_form form %}
             <button type="submit" class="btn btn-outline-primary btn-lg">
                 Answer 
             </button>

@@ -68,10 +68,10 @@ def signup(request: HttpRequest):
 
 def ask(request: HttpRequest):
     if request.method == 'GET':
-        ask_form = forms.QuestionCreationForm()
+        ask_form = forms.QuestionForm()
     if request.method == 'POST':
         if request.user.is_authenticated:
-            ask_form = forms.QuestionCreationForm(request.POST)
+            ask_form = forms.QuestionForm(request.POST)
             if ask_form.is_valid():
                 question = ask_form.save(request.user.get_username())
                 return HttpResponseRedirect(f'/question/{question.pk}')
@@ -81,9 +81,20 @@ def ask(request: HttpRequest):
 
 
 def question(request: HttpRequest, id: int):
+
     question_item = models.Question.objects.get_by_id(id)
-    context = {"question": question_item} | paginate(
-        models.Answer.objects.get_answers(question_item), request, per_page=10)
+    if request.method == 'GET':
+        answer_form = forms.AnswerForm()
+        print(123)
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            answer_form = forms.AnswerForm(request.POST)
+            if answer_form.is_valid():
+                answer = answer_form.save(request)
+                return HttpResponseRedirect(request.path + "#answer-" + str(answer.pk))
+        else:
+            return HttpResponseRedirect("/login?continue=/ask")
+    context = {"question": question_item} | paginate(models.Answer.objects.get_answers(question_item) , request, per_page=10) | {'form': answer_form}
     return render(request, 'question.html', context=(context | base_context))
 
 
