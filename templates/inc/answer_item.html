@@ -1,0 +1,51 @@
+{% load static %}
+<div class="row d-flex justify-content-center answer">
+        <div class="col col-xl-10">
+            <div class="card mb-5" style="border-radius: 15px;">
+                <div class="card-body p-4">
+                    <div class="d-flex flex-row">
+                        <img src="{% static "/img/avatar.jpg" %}" alt="..." class="post_avatar img-thumbnail">
+                        <div class="container">
+                            <p>
+                                {{answer.text}}
+                            </p>
+                        </div>
+                    </div>
+                    <p>
+                    Created by <strong>{{answer.author}}</strong> <span id="post_creation_dat"> on {{anwser.creation_date}}</span>
+                    </p>
+                    <hr class="my-4">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <p class="mb-0">
+                        Rating: {{answer.rating}}
+                        <span class="btn btn-outline-dark mx-2 like_btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                            </svg>
+                        </span>
+                        <span class="btn btn-outline-dark dislike_btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                            </svg> 
+                        </span>
+                        </p>
+
+                        <p class="mx-3 mb-0">
+                        <div class="form-check">
+                            {% if answer.correct %}
+                                <input "form-check-input" type="checkbox" value="" checked>
+                            {% else %}
+                                <input "form-check-input" type="checkbox" value="" >
+                            {% endif %}
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Correct 
+                            </label>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

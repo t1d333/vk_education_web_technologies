@@ -68,11 +68,11 @@ html, body {
 footer {
     height: 80px;
 }
-.main {
-    height: calc(100% - 200px);
+header {
+    height: 80px;
 }
-
 #logo {
     height: 30px;
     width: 50px;
 }
+
