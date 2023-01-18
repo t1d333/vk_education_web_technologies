@@ -1,54 +1,74 @@
 from django.db import models
-
-QUESTIONS  = [
-    {
-        "id": id,
-        "title": f'Question #{id}',
-        "text": f'Text of question #{id}',
-        "answers_count": id + 10,
-        "author": f'Author#{id}',
-        "creation_date": f'{id + 10} April, 2022',
-        "rating": id - 5,
-        "tags": ["tag1", "tag2", "tag3"],
-        "answers": [
-            {
-                "rating": ans_id,
-                "text": f'Ansewer #{ans_id} for question #{id} ',
-                "author": f'Author #{ans_id}',
-                "correct": False,
-                "creation_date": f'{id + 10} April, 2022',
-            } for ans_id in range (3, 300)
-            ]
-    }for id in range(500)
-    
-]
-
-HOT_QUESTIONS  = [
-    {
-        "id": id,
-        "title": f'HOT Question #{id}',
-        "text": f'Text of hot question #{id}',
-        "answers_count": id + 10,
-        "author": f'Author#{id}',
-        "creation_date": f'{id + 10} April, 2022',
-        "rating": id - 5,
-        "tags": ["tag1", "tag2", "tag3"],
-        "answers": [
-            {
-                "rating": ans_id,
-                "text": f'Ansewer #{ans_id} for question #{id} ',
-                "author": f'Author #{ans_id}',
-                "correct": False,
-                "creation_date": f'{id + 10} April, 2022',
-            } for ans_id in range (3, 13)
-            ]
-    }for id in range(500)
-    
-]
+from django.contrib.auth.models import User
 
 
-BEST_MEMBERS = [ f'Best user # {n}'  for n in range(5) ]
+class Profile(models.Model):
+    nickname = models.CharField(max_length=30)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email = models.EmailField()
+    avatar = models.ImageField()
 
-TAGS = ["tag1", "tag2", "tag3" ,"perl", "Techopark", "python", "django", "MySql", "Mail.ru", "Firefox", "Techopark"]
+    def __str__(self):
+        return self.nickname
 
-POPULAR_TAGS = ["perl", "Techopark", "python", "django", "MySql", "Mail.ru", "Firefox", "Techopark"]
+
+class Tag(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class QuestionManager(models.Manager):
+    def order_by_date(self):
+        return self.order_by('-created')
+
+    def order_by_rating(self):
+        return self.order_by('-rating')
+
+    def get_by_tag(self, tag):
+        return self.filter(tags__name__icontains=tag)
+
+    def get_by_id(self, id):
+        return self.get(pk=id)
+
+
+class Question(models.Model):
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    title = models.CharField(max_length=80)
+    text = models.TextField()
+    tags = models.ManyToManyField(Tag)
+    rating = models.IntegerField(default=0)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    answers = models.IntegerField(default=0)
+    objects = QuestionManager()
+
+    def __str__(self):
+        return self.title
+
+
+class AnswerManager(models.Manager):
+    def get_answers(self, question):
+        return self.filter(question=question)
+
+
+class Answer(models.Model):
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    text = models.TextField()
+    rating = models.IntegerField(default=0)
+    correct = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    objects = AnswerManager()
+
+
+class QuestionGrade(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    value = models.IntegerField()
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+
+class AnswerGrade(models.Model):
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    value = models.IntegerField()
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)

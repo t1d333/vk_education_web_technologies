@@ -1,8 +1,8 @@
 Tags: 
 <span class="tag_list">
-    {% for tag in question.tags%}
+    {% for tag in question.tags.all%}
     <a href="{% url "tag_page" tag_name=tag %}">
-        {{tag}}
+        {{tag.name}}
     </a>
     {% endfor %}
 </span>
