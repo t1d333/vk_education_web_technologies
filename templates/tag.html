@@ -1,14 +1,10 @@
 {% extends "inc/base.html" %}
-
 {% block content %}
 <div class="d-flex flex-row justify-content-around">
     <div class="h1">
-        New Questions
-    </div>
-    <div class="h1">
-        <a href="{% url "hot" %}">Hot Questions</a>
+        {{tag}}
     </div>
 </div>
-{% include "inc/questions_list.html"%}
+{% include "inc/questions_list.html" %}
 {% include "inc/pagination.html" %}
 {% endblock %}
