@@ -21,11 +21,10 @@ class Command(BaseCommand):
             name = names.get_first_name() + str(time.time()).split(".")[1]
             profiles.append(
                 models.Profile(
-                    nickname=name,
+                    username=name,
                     email=name + "@test.ru",
                     user=User.objects.create_user(
-                        username=name + str(
-                            time.time()))))
+                        username=name)))
             tags.append(models.Tag(
                 name=(lorem.words(1) + str(time.time()).split(".")[1])[:12]))
         profiles = models.Profile.objects.bulk_create(profiles)
